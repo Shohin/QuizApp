@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionVC" customModule="QuizApp" customModuleProvider="target">
+            <connections>
+                <outlet property="headerLabel" destination="I4O-Zv-zHJ" id="u6i-Wf-i7a"/>
+                <outlet property="tableView" destination="lU9-QF-KtP" id="hz4-yz-7b3"/>
+                <outlet property="view" destination="iN0-l3-epB" id="rxC-hg-J4U"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="44" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lU9-QF-KtP">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <label key="tableHeaderView" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="I4O-Zv-zHJ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="uRb-Zk-LX8"/>
+                        <outlet property="delegate" destination="-1" id="Toe-5F-HsT"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="lU9-QF-KtP" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IQa-BD-K2w"/>
+                <constraint firstItem="lU9-QF-KtP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Mti-fj-Gtp"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="lU9-QF-KtP" secondAttribute="bottom" id="qQG-UD-Zdv"/>
+                <constraint firstItem="lU9-QF-KtP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="w0a-6q-cDp"/>
+            </constraints>
+            <point key="canvasLocation" x="-1500.0000000000002" y="387.72321428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
