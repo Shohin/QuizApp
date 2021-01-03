@@ -14,9 +14,11 @@ public enum Question<T: Hashable>: Hashable {
     public func hash(into hasher: inout Hasher) {
         switch self {
         case .singleAnswer(let value):
-            value.hash(into: &hasher)
+            let val = "singleAnswer_\(value)"
+            val.hash(into: &hasher)
         case .multipleAnswer(let value):
-            value.hash(into: &hasher)
+            let val = "multipleAnswer_\(value)"
+            val.hash(into: &hasher)
         }
     }
 }
