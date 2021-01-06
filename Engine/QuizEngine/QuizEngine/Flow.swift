@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Flow<R: Router> {
+class Flow<R: QuizDelegate> {
     typealias Question = R.Question
     typealias Answer = R.Answer
     
@@ -24,9 +24,9 @@ class Flow<R: Router> {
     
     func start() {
         if let firstQuestion = questions.first {
-            router.routeTo(question: firstQuestion, answerCallback: nextCallback(from: firstQuestion))
+            router.handle(question: firstQuestion, answerCallback: nextCallback(from: firstQuestion))
         } else {
-            router.routeTo(result: result())
+            router.handle(result: result())
         }
     }
     
@@ -42,9 +42,9 @@ class Flow<R: Router> {
             let nextIndex = curQuestionIndex + 1
             if nextIndex < questions.count {
                 let nextQeustion = questions[nextIndex]
-                router.routeTo(question: nextQeustion, answerCallback: nextCallback(from: nextQeustion))
+                router.handle(question: nextQeustion, answerCallback: nextCallback(from: nextQeustion))
             } else {
-                router.routeTo(result: result())
+                router.handle(result: result())
             }
         }
     }
