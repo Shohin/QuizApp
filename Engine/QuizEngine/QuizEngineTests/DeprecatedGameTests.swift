@@ -39,18 +39,17 @@ final class DeprecatedGameTests: XCTestCase {
         
         XCTAssertEqual(router.routedResult!.score, 2)
     }
-}
-
-@available(*, deprecated)
-private class RouterSpy: Router {
-    var answerCallback: (String) -> Void = {_ in}
-    var routedResult: Result<String, String>? = nil
     
-    func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
-        self.answerCallback = answerCallback
-    }
-    
-    func routeTo(result: Result<String, String>) {
-        routedResult = result
+    private class RouterSpy: Router {
+        var answerCallback: (String) -> Void = {_ in}
+        var routedResult: Result<String, String>? = nil
+        
+        func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
+            self.answerCallback = answerCallback
+        }
+        
+        func routeTo(result: Result<String, String>) {
+            routedResult = result
+        }
     }
 }
