@@ -1,5 +1,5 @@
 //
-//  GameTests.swift
+//  DepricatedGameTests.swift
 //  QuizEngineTests
 //
 //  Created by Shohin Tagaev on 12/18/20.
@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 import QuizEngine
 
-final class GameTests: XCTestCase {
+final class DepricatedGameTests: XCTestCase {
     let router = RouterSpy()
     var game: Game<String, String, RouterSpy>!
     
