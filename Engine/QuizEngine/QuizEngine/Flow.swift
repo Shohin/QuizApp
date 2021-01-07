@@ -7,44 +7,48 @@
 
 import Foundation
 
-class Flow<R: QuizDelegate> {
-    typealias Question = R.Question
-    typealias Answer = R.Answer
+class Flow<Delegate: QuizDelegate> {
+    typealias Question = Delegate.Question
+    typealias Answer = Delegate.Answer
     
-    private let router: R
+    private let delegate: Delegate
     private let questions: [Question]
     private var answers: [Question: Answer] = [:]
     private let scoring: ([Question: Answer]) -> Int
     
-    init(questions: [Question], router: R, scoring: @escaping ([Question: Answer]) -> Int) {
+    init(questions: [Question], router: Delegate, scoring: @escaping ([Question: Answer]) -> Int) {
         self.questions = questions
-        self.router = router
+        self.delegate = router
         self.scoring = scoring
     }
     
     func start() {
+        delegateQuestionHandling(at: questions.startIndex)
+    }
+    
+    private func delegateQuestionHandling(at index: Int) {
         if let firstQuestion = questions.first {
-            router.handle(question: firstQuestion, answerCallback: nextCallback(from: firstQuestion))
+            delegate.handle(question: firstQuestion, answerCallback: nextCallback(from: firstQuestion))
         } else {
-            router.handle(result: result())
+            delegate.handle(result: result())
         }
     }
     
     private func nextCallback(from question: Question) -> (Answer) -> Void {
         {[weak self]  in
-            self?.routeNext(question, $0)
+            self?.delegateQuestionHandling(question, $0)
         }
     }
     
-    private func routeNext(_ question: Question,  _ answer: Answer) {
+    private func delegateQuestionHandling(_ question: Question,  _ answer: Answer) {
         if let curQuestionIndex = questions.firstIndex(of: question) {
             answers[question] = answer
             let nextIndex = curQuestionIndex + 1
             if nextIndex < questions.count {
                 let nextQeustion = questions[nextIndex]
-                router.handle(question: nextQeustion, answerCallback: nextCallback(from: nextQeustion))
+                delegate.handle(question: nextQeustion, answerCallback: nextCallback(from: nextQeustion))
             } else {
-                router.handle(result: result())
+                delegate.handle(result: result())
             }
         }
     }
