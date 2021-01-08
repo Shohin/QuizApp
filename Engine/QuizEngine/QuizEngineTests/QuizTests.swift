@@ -9,6 +9,21 @@ import Foundation
 import XCTest
 @testable import QuizEngine
 
+final class Quiz {
+    private let flow: Any
+    init(flow: Any) {
+        self.flow = flow
+    }
+    
+    func start<Delegate: QuizDelegate> (questions: [Delegate.Question], delegate: Delegate, correctAnswers: [Delegate.Question: Delegate.Answer]) -> Quiz where Delegate.Answer: Equatable {
+        let flow = Flow(questions: questions, delegate: delegate) {
+            scoringGame(answers: $0, correctAnswers: correctAnswers)
+        }
+        flow.start()
+        return Quiz(flow: flow)
+    }
+}
+
 final class QuizTests: XCTestCase {
     private let delegate = DelegateSpy()
     private var quiz: Game<String, String, DelegateSpy>!
