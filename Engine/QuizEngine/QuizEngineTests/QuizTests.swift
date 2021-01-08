@@ -15,7 +15,7 @@ final class Quiz {
         self.flow = flow
     }
     
-    func start<Delegate: QuizDelegate> (questions: [Delegate.Question], delegate: Delegate, correctAnswers: [Delegate.Question: Delegate.Answer]) -> Quiz where Delegate.Answer: Equatable {
+    static func start<Delegate: QuizDelegate> (questions: [Delegate.Question], delegate: Delegate, correctAnswers: [Delegate.Question: Delegate.Answer]) -> Quiz where Delegate.Answer: Equatable {
         let flow = Flow(questions: questions, delegate: delegate) {
             scoringGame(answers: $0, correctAnswers: correctAnswers)
         }
@@ -26,11 +26,11 @@ final class Quiz {
 
 final class QuizTests: XCTestCase {
     private let delegate = DelegateSpy()
-    private var quiz: Game<String, String, DelegateSpy>!
+    private var quiz: Quiz!
     
     override func setUp() {
         super.setUp()
-        quiz = startGame(questions: ["Q1", "Q2"], router: delegate, correctAnswers: ["Q1": "A1", "Q2": "A2"])
+        quiz = Quiz.start(questions: ["Q1", "Q2"], delegate: delegate, correctAnswers: ["Q1": "A1", "Q2": "A2"])
     }
     
     func testStartQuizAswerZeroOutOfTwoCorrectlyScoresZero() {
@@ -54,7 +54,7 @@ final class QuizTests: XCTestCase {
         XCTAssertEqual(delegate.handledResult!.score, 2)
     }
     
-    private class DelegateSpy: Router, QuizDelegate {
+    private class DelegateSpy: QuizDelegate {
         var answerCallback: (String) -> Void = {_ in}
         var handledResult: Result<String, String>? = nil
         
@@ -64,14 +64,6 @@ final class QuizTests: XCTestCase {
         
         func handle(result: Result<String, String>) {
             handledResult = result
-        }
-        
-        func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
-            handle(question: question, answerCallback: answerCallback)
-        }
-        
-        func routeTo(result: Result<String, String>) {
-            handle(result: result)
         }
     }
 }
