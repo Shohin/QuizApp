@@ -21,3 +21,10 @@ public final class Quiz {
         return Quiz(flow: flow)
     }
 }
+
+
+func scoringGame<Question, Answer: Equatable>(answers: [Question: Answer], correctAnswers: [Question: Answer]) -> Int {
+    answers.reduce(0) {(score, tuple) in
+        score + (correctAnswers[tuple.key] == tuple.value ? 1 : 0)
+    }
+}

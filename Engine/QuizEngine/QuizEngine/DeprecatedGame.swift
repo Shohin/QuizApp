@@ -33,12 +33,6 @@ public func startGame<Question, Answer: Equatable, R: Router> (questions: [Quest
     return Game(flow: flow)
 }
 
-func scoringGame<Question, Answer: Equatable>(answers: [Question: Answer], correctAnswers: [Question: Answer]) -> Int {
-    answers.reduce(0) {(score, tuple) in
-        score + (correctAnswers[tuple.key] == tuple.value ? 1 : 0)
-    }
-}
-
 @available(*, deprecated)
 private class QuizDelegateToRouterAdapter<R: Router>: QuizDelegate {
     let router: R
