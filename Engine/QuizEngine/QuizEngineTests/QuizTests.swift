@@ -43,8 +43,8 @@ final class QuizTests: XCTestCase {
         var answerCallback: (String) -> Void = {_ in}
         var handledResult: Result<String, String>? = nil
         
-        func handle(question: String, answerCallback: @escaping (String) -> Void) {
-            self.answerCallback = answerCallback
+        func answer(for question: String, completion: @escaping (String) -> Void) {
+            self.answerCallback = completion
         }
         
         func handle(result: Result<String, String>) {
