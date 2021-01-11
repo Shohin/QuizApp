@@ -101,37 +101,9 @@ class FlowTests: XCTestCase {
         assertEqueal(delegate.completedQuizzes[0], [("Q1", "A1"), ("Q2", "A2")])
     }
     
-    func testStartAndAnswerToFirstAndSecondQuestionWithTwoQuestionsScoring() {
-        let sut = makeSUT(questions: ["Q1", "Q2"]) {_ in
-            return 10
-        }
-        
-        sut.start()
-        
-        delegate.answerCompletion("A1")
-        delegate.answerCompletion("A2")
-        
-        XCTAssertEqual(delegate.handledResult?.score, 10)
-    }
-    
-    func testStartAndAnswerToFirstAndSecondQuestionWithTwoQuestionsScoresWithRightAnswers() {
-        var receivedAnswers: [String: String]?
-        let sut = makeSUT(questions: ["Q1", "Q2"]) { answers in
-            receivedAnswers = answers
-            return 12
-        }
-        
-        sut.start()
-        
-        delegate.answerCompletion("A1")
-        delegate.answerCompletion("A2")
-        
-        XCTAssertEqual(receivedAnswers, ["Q1": "A1", "Q2": "A2"])
-    }
-    
     //MARK: Helpers
-    private func makeSUT(questions: [String], scoring: @escaping ([String: String]) -> Int = {_ in return 0}) -> Flow<DelegateSpy> {
-        Flow(questions: questions, delegate: delegate, scoring: scoring)
+    private func makeSUT(questions: [String]) -> Flow<DelegateSpy> {
+        Flow(questions: questions, delegate: delegate)
     }
     
     private func assertEqueal(_ a1: [(String, String)], _ a2: [(String, String)], file: StaticString = #filePath, line: UInt = #line) {
