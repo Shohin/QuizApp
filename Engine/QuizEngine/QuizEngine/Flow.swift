@@ -48,6 +48,7 @@ class Flow<Delegate: QuizDelegate> {
                 let nextQeustion = questions[nextIndex]
                 delegate.answer(for: nextQeustion, completion: nextCallback(from: nextQeustion))
             } else {
+                delegate.didCompleteQuiz(withAnswers: [])
                 delegate.handle(result: result())
             }
         }

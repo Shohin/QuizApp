@@ -13,7 +13,7 @@ public protocol QuizDelegate {
     
     func answer(for question: Question, completion: @escaping (Answer) -> Void)
     
-    func didCompleteQuize(withAnswers: [(question: Question, answer: Answer)])
+    func didCompleteQuiz(withAnswers: [(question: Question, answer: Answer)])
     
     @available(*, deprecated)
     func handle(result: Result<Question, Answer>)
@@ -21,5 +21,5 @@ public protocol QuizDelegate {
 
 #warning("Remove this at some point")
 public extension QuizDelegate {
-    func didCompleteQuize(withAnswers: [(question: Question, answer: Answer)]) { }
+    func didCompleteQuiz(withAnswers: [(question: Question, answer: Answer)]) { }
 }
