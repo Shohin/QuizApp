@@ -14,21 +14,11 @@ public final class Quiz {
     }
     
     public static func start<Delegate: QuizDelegate> (questions: [Delegate.Question],
-                                                      delegate: Delegate,
-                                                      correctAnswers: [Delegate.Question: Delegate.Answer]
+                                                      delegate: Delegate
     ) -> Quiz where Delegate.Answer: Equatable {
         let flow = Flow(questions: questions,
-                        delegate: delegate) {
-            scoringGame(answers: $0, correctAnswers: correctAnswers)
-        }
+                        delegate: delegate)
         flow.start()
         return Quiz(flow: flow)
-    }
-}
-
-
-func scoringGame<Question, Answer: Equatable>(answers: [Question: Answer], correctAnswers: [Question: Answer]) -> Int {
-    answers.reduce(0) {(score, tuple) in
-        score + (correctAnswers[tuple.key] == tuple.value ? 1 : 0)
     }
 }
