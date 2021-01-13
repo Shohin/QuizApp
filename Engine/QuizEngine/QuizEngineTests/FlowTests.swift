@@ -101,6 +101,22 @@ class FlowTests: XCTestCase {
         assertEqueal(delegate.completedQuizzes[0], [("Q1", "A1"), ("Q2", "A2")])
     }
     
+    func test_startAndAnswerFirstAndSecondQuestion_withTwoQuestionsTwice_completesQuizTwice() {
+        let sut = makeSUT(questions: ["Q1", "Q2"])
+        
+        sut.start()
+        
+        delegate.answerCompletions[0]("A1")
+        delegate.answerCompletions[1]("A2")
+        
+        delegate.answerCompletions[0]("A1-1")
+        delegate.answerCompletions[1]("A2-2")
+        
+        XCTAssertEqual(delegate.completedQuizzes.count, 2)
+        assertEqueal(delegate.completedQuizzes[0], [("Q1", "A1"), ("Q2", "A2")])
+        assertEqueal(delegate.completedQuizzes[1], [("Q1", "A1-1"), ("Q2", "A2-2")])
+    }
+    
     //MARK: Helpers
     private func makeSUT(questions: [String]) -> Flow<DelegateSpy> {
         Flow(questions: questions, delegate: delegate)
