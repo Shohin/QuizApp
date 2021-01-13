@@ -50,8 +50,8 @@ class FlowTests: XCTestCase {
         
         sut.start()
         
-        delegate.answerCompletion("A1")
-        delegate.answerCompletion("A2")
+        delegate.answerCompletions[0]("A1")
+        delegate.answerCompletions[1]("A2")
         
         XCTAssertEqual(delegate.questionsAsked, ["Q1", "Q2", "Q3"])
     }
@@ -61,7 +61,7 @@ class FlowTests: XCTestCase {
         
         sut.start()
         
-        delegate.answerCompletion("A1")
+        delegate.answerCompletions[0]("A1")
         
         XCTAssertEqual(delegate.questionsAsked, ["Q1"])
     }
@@ -84,7 +84,7 @@ class FlowTests: XCTestCase {
         
         sut.start()
         
-        delegate.answerCompletion("A1")
+        delegate.answerCompletions[0]("A1")
         
         XCTAssertTrue(delegate.completedQuizzes.isEmpty)
     }
@@ -94,8 +94,8 @@ class FlowTests: XCTestCase {
         
         sut.start()
         
-        delegate.answerCompletion("A1")
-        delegate.answerCompletion("A2")
+        delegate.answerCompletions[0]("A1")
+        delegate.answerCompletions[1]("A2")
         
         XCTAssertEqual(delegate.completedQuizzes.count, 1)
         assertEqueal(delegate.completedQuizzes[0], [("Q1", "A1"), ("Q2", "A2")])
@@ -115,11 +115,11 @@ class FlowTests: XCTestCase {
         var handledResult: Result<String, String>? = nil
         var completedQuizzes: [[(String, String)]] = []
         
-        var answerCompletion: (String) -> Void = {_ in}
+        var answerCompletions: [(String) -> Void] = []
         
         func answer(for question: String, completion: @escaping (String) -> Void) {
             questionsAsked.append(question)
-            self.answerCompletion = completion
+            answerCompletions.append(completion)
         }
         
         func didCompleteQuiz(withAnswers answers: [(question: String, answer: String)]) {
