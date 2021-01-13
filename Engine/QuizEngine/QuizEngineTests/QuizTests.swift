@@ -12,7 +12,7 @@ import QuizEngine
 final class QuizTests: XCTestCase {
     private var quiz: Quiz!
     
-    func testStartQuizAswerZeroOutOfTwoCorrectlyScoresZero() {
+    func test_startQuiz_aswersAllQuestions_completesWithAnswers() {
         let delegate = DelegateSpy()
         quiz = Quiz.start(questions: ["Q1", "Q2"], delegate: delegate)
         
