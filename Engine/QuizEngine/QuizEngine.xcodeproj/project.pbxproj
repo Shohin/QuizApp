@@ -28,6 +28,8 @@
 		D37A5B1F2585B64300FA2C6C /* QuizEngine_.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D37A5B152585B64300FA2C6C /* QuizEngine_.framework */; };
 		D37A5B342585B65D00FA2C6C /* FlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A5B332585B65D00FA2C6C /* FlowTests.swift */; };
 		D37A5B422585B85500FA2C6C /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A5B412585B85500FA2C6C /* Flow.swift */; };
+		D381DB0225B0040300E104C8 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D381DB0125B0040300E104C8 /* Assertions.swift */; };
+		D381DB1025B0043900E104C8 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D381DB0125B0040300E104C8 /* Assertions.swift */; };
 		D38D764225A17CEC00CFBA3D /* QuestionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305B806259C2FDE008531F4 /* QuestionTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,7 @@
 		D37A5B252585B64300FA2C6C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D37A5B332585B65D00FA2C6C /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
 		D37A5B412585B85500FA2C6C /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
+		D381DB0125B0040300E104C8 /* Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +146,7 @@
 				D37A5B332585B65D00FA2C6C /* FlowTests.swift */,
 				D333C023258C583D008D3F4E /* DeprecatedGameTests.swift */,
 				D3711D2325A6B6DD003D298E /* QuizTests.swift */,
+				D381DB0125B0040300E104C8 /* Assertions.swift */,
 			);
 			path = QuizEngineTests;
 			sourceTree = "<group>";
@@ -336,6 +340,7 @@
 				D302F829259052330071B4C0 /* FlowTests.swift in Sources */,
 				D38D764225A17CEC00CFBA3D /* QuestionTests.swift in Sources */,
 				D3711D2925A6B6E9003D298E /* QuizTests.swift in Sources */,
+				D381DB1025B0043900E104C8 /* Assertions.swift in Sources */,
 				D302F82A259052330071B4C0 /* DeprecatedGameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -360,6 +365,7 @@
 				D37A5B342585B65D00FA2C6C /* FlowTests.swift in Sources */,
 				D305B807259C2FDE008531F4 /* QuestionTests.swift in Sources */,
 				D3711D2425A6B6DD003D298E /* QuizTests.swift in Sources */,
+				D381DB0225B0040300E104C8 /* Assertions.swift in Sources */,
 				D333C024258C583D008D3F4E /* DeprecatedGameTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
