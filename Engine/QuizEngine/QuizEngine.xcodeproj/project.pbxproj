@@ -30,6 +30,8 @@
 		D37A5B422585B85500FA2C6C /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D37A5B412585B85500FA2C6C /* Flow.swift */; };
 		D381DB0225B0040300E104C8 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D381DB0125B0040300E104C8 /* Assertions.swift */; };
 		D381DB1025B0043900E104C8 /* Assertions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D381DB0125B0040300E104C8 /* Assertions.swift */; };
+		D381DB1625B0047100E104C8 /* DelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D381DB1525B0047100E104C8 /* DelegateSpy.swift */; };
+		D381DB1B25B004A400E104C8 /* DelegateSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = D381DB1525B0047100E104C8 /* DelegateSpy.swift */; };
 		D38D764225A17CEC00CFBA3D /* QuestionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D305B806259C2FDE008531F4 /* QuestionTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +70,7 @@
 		D37A5B332585B65D00FA2C6C /* FlowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowTests.swift; sourceTree = "<group>"; };
 		D37A5B412585B85500FA2C6C /* Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		D381DB0125B0040300E104C8 /* Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assertions.swift; sourceTree = "<group>"; };
+		D381DB1525B0047100E104C8 /* DelegateSpy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DelegateSpy.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +150,7 @@
 				D333C023258C583D008D3F4E /* DeprecatedGameTests.swift */,
 				D3711D2325A6B6DD003D298E /* QuizTests.swift */,
 				D381DB0125B0040300E104C8 /* Assertions.swift */,
+				D381DB1525B0047100E104C8 /* DelegateSpy.swift */,
 			);
 			path = QuizEngineTests;
 			sourceTree = "<group>";
@@ -342,6 +346,7 @@
 				D3711D2925A6B6E9003D298E /* QuizTests.swift in Sources */,
 				D381DB1025B0043900E104C8 /* Assertions.swift in Sources */,
 				D302F82A259052330071B4C0 /* DeprecatedGameTests.swift in Sources */,
+				D381DB1B25B004A400E104C8 /* DelegateSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -367,6 +372,7 @@
 				D3711D2425A6B6DD003D298E /* QuizTests.swift in Sources */,
 				D381DB0225B0040300E104C8 /* Assertions.swift in Sources */,
 				D333C024258C583D008D3F4E /* DeprecatedGameTests.swift in Sources */,
+				D381DB1625B0047100E104C8 /* DelegateSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
