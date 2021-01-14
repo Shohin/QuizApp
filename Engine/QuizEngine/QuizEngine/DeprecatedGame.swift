@@ -17,6 +17,12 @@ public protocol Router {
 }
 
 @available(*, deprecated)
+public struct Result<Question: Hashable, Answer> {
+    public let answers: [Question: Answer]
+    public let score: Int
+}
+
+@available(*, deprecated)
 public class Game<Question, Answer: Equatable, R: Router> where R.Question == Question, R.Answer == Answer {
     let flow: Any
     init(flow: Any) {
