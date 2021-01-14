@@ -18,8 +18,3 @@ public protocol QuizDelegate {
     @available(*, deprecated)
     func handle(result: Result<Question, Answer>)
 }
-
-#warning("Remove this at some point")
-public extension QuizDelegate {
-    func didCompleteQuiz(withAnswers: [(question: Question, answer: Answer)]) { }
-}
