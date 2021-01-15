@@ -10,12 +10,15 @@ import XCTest
 
 final class ScoreTests: XCTestCase {
     func test_noAnswers_scoresZero() {
-        let score = BasicScore.score(for: [])
-        XCTAssertEqual(score, 0)
+        XCTAssertEqual(BasicScore.score(for: [], compareTo: []), 0)
+    }
+    
+    func test_oneWrongAnswer_scoresZero() {
+        XCTAssertEqual(BasicScore.score(for: ["wrong"], compareTo: ["correct"]), 0)
     }
     
     private struct BasicScore {
-        static func score(for: [Any]) -> Int {
+        static func score(for: [Any], compareTo: [Any]) -> Int {
             0
         }
     }
