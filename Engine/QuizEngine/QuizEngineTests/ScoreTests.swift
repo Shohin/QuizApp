@@ -29,6 +29,14 @@ final class ScoreTests: XCTestCase {
         XCTAssertEqual(score, 1)
     }
     
+    func test_twoCorrectAnswers_scoreTwo() {
+        let score = BasicScore.score(
+            for: ["correct 1", "correct 2"],
+            compareTo: ["correct 1", "correct 2"])
+        
+        XCTAssertEqual(score, 2)
+    }
+    
     private struct BasicScore {
         static func score(for answers: [String], compareTo correctAnswers: [String]) -> Int {
             var score = 0
