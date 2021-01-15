@@ -17,9 +17,14 @@ final class ScoreTests: XCTestCase {
         XCTAssertEqual(BasicScore.score(for: ["wrong"], compareTo: ["correct"]), 0)
     }
     
+    func test_oneCorrectAnswer_scoresOne() {
+        XCTAssertEqual(BasicScore.score(for: ["correct"], compareTo: ["correct"]), 1)
+    }
+    
     private struct BasicScore {
-        static func score(for: [Any], compareTo: [Any]) -> Int {
-            0
+        static func score(for answers: [String], compareTo correctAnswers: [String]) -> Int {
+            if answers.isEmpty { return 0 }
+            return answers == correctAnswers ? 1 : 0
         }
     }
 }
