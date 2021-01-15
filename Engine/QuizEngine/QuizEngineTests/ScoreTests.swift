@@ -22,7 +22,10 @@ final class ScoreTests: XCTestCase {
     }
     
     func test_oneCorrectOneWrongAnswers_scoresOne() {
-        let score = BasicScore.score(for: ["correct 1", "wrong"], compareTo: ["correct 1", "correct 2"])
+        let score = BasicScore.score(
+            for: ["correct 1", "wrong"],
+            compareTo: ["correct 1", "correct 2"])
+        
         XCTAssertEqual(score, 1)
     }
     
