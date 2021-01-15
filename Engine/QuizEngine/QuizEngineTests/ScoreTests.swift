@@ -21,10 +21,18 @@ final class ScoreTests: XCTestCase {
         XCTAssertEqual(BasicScore.score(for: ["correct"], compareTo: ["correct"]), 1)
     }
     
+    func test_oneCorrectOneWrongAnswers_scoresOne() {
+        XCTAssertEqual(BasicScore.score(for: ["correct 1", "wrong"], compareTo: ["correct 1", "correct 2"]), 1)
+    }
+    
     private struct BasicScore {
         static func score(for answers: [String], compareTo correctAnswers: [String]) -> Int {
-            if answers.isEmpty { return 0 }
-            return answers == correctAnswers ? 1 : 0
+            var score = 0
+            for (index, answer) in answers.enumerated() {
+                score += answer == correctAnswers[index] ? 1 : 0
+            }
+            
+            return score
         }
     }
 }
