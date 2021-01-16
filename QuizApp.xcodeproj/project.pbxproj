@@ -23,6 +23,7 @@
 		D33D3A4825958E510020A855 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D3A4725958E510020A855 /* ViewControllerFactory.swift */; };
 		D33D3A5025958FFD0020A855 /* iOSViewControllerFactoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33D3A4F25958FFD0020A855 /* iOSViewControllerFactoryTests.swift */; };
 		D35B1D6025B2933000CE08DF /* ScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35B1D5F25B2933000CE08DF /* ScoreTests.swift */; };
+		D35B1D6B25B2937D00CE08DF /* BasicScoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = D35B1D6A25B2937D00CE08DF /* BasicScoring.swift */; };
 		D38A604A2596DC90005E5D05 /* ResultsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38A60492596DC90005E5D05 /* ResultsPresenterTests.swift */; };
 		D38A604E2596DE06005E5D05 /* ResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D38A604D2596DE06005E5D05 /* ResultsPresenter.swift */; };
 		D3B14D5F2594495300116658 /* ResultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3B14D5E2594495300116658 /* ResultHelper.swift */; };
@@ -86,6 +87,7 @@
 		D33D3A4B25958F8E0020A855 /* iOSViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSViewControllerFactory.swift; sourceTree = "<group>"; };
 		D33D3A4F25958FFD0020A855 /* iOSViewControllerFactoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSViewControllerFactoryTests.swift; sourceTree = "<group>"; };
 		D35B1D5F25B2933000CE08DF /* ScoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScoreTests.swift; sourceTree = "<group>"; };
+		D35B1D6A25B2937D00CE08DF /* BasicScoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicScoring.swift; sourceTree = "<group>"; };
 		D38A60492596DC90005E5D05 /* ResultsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPresenterTests.swift; sourceTree = "<group>"; };
 		D38A604D2596DE06005E5D05 /* ResultsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsPresenter.swift; sourceTree = "<group>"; };
 		D3B14D5E2594495300116658 /* ResultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHelper.swift; sourceTree = "<group>"; };
@@ -150,6 +152,14 @@
 			path = Scoring;
 			sourceTree = "<group>";
 		};
+		D35B1D6925B2936E00CE08DF /* Scoring */ = {
+			isa = PBXGroup;
+			children = (
+				D35B1D6A25B2937D00CE08DF /* BasicScoring.swift */,
+			);
+			path = Scoring;
+			sourceTree = "<group>";
+		};
 		D3CC9C9C25885907001F81D7 = {
 			isa = PBXGroup;
 			children = (
@@ -174,6 +184,7 @@
 		D3CC9CA725885907001F81D7 /* QuizApp */ = {
 			isa = PBXGroup;
 			children = (
+				D35B1D6925B2936E00CE08DF /* Scoring */,
 				D3DDBDA5259D7D1E000C4203 /* Routing */,
 				D3DDBDA2259D7CE9000C4203 /* Presentation */,
 				D3DDBD9C259D7C74000C4203 /* UI */,
@@ -526,6 +537,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D302F84F2590557B0071B4C0 /* NavigationControllerRouter.swift in Sources */,
+				D35B1D6B25B2937D00CE08DF /* BasicScoring.swift in Sources */,
 				D33D3A4825958E510020A855 /* ViewControllerFactory.swift in Sources */,
 				D3CC9CEA25885AED001F81D7 /* QuestionVC.swift in Sources */,
 				D3E80F5A2589D2DB0082BA78 /* ResultVC.swift in Sources */,
