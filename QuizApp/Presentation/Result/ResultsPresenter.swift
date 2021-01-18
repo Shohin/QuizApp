@@ -8,7 +8,7 @@
 import Foundation
 import QuizEngine
 
-struct ResultsPresenter {
+final class ResultsPresenter {
     typealias Answers = [(question: Question<String>, answers: [String])]
     typealias Scorer = ([[String]], [[String]]) -> Int
     
@@ -22,20 +22,6 @@ struct ResultsPresenter {
         self.userAnswers = userAnswers
         self.correctAnswers = correctAnswers
         self.scorer = scorer
-    }
-    
-    init(result: Result<Question<String>, [String]>,
-         questions: [Question<String>],
-         correctAnswers: [Question<String>: [String]]) {
-        self.userAnswers = questions.map({ (question) in
-            (question, result.answers[question]!)
-        })
-        
-        self.correctAnswers = questions.map({ (question) in
-            (question, correctAnswers[question]!)
-        })
-        
-        self.scorer = {_, _ in result.score }
     }
     
     var title: String {
