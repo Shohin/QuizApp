@@ -26,13 +26,7 @@ final class ResultsPresenterTests: XCTestCase {
     }
     
     func testPresentableAnswersWithoutQuestionsIsEmpty() {
-        let answers = [Question<String>: [String]]()
-        
-        let result = Result.make(answers: answers)
-        
-        let sut = ResultsPresenter(result: result, questions: [], correctAnswers: [:])
-        
-        XCTAssertTrue(sut.presentableAnswers.isEmpty)
+        XCTAssertTrue(makeSUT().presentableAnswers.isEmpty)
     }
     
     func testPresentableAnswersWithWrongSingleAnswerMapsAnswers() {
