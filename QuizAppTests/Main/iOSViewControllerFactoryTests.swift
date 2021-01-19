@@ -67,6 +67,10 @@ final class iOSViewControllerFactoryTests: XCTestCase {
     }
     
     //MARK: Helpers
+    func makeSUT(options: [Question<String>: [String]] = [:], correctAnswers: iOSViewControllerFactory.Answers = []) -> iOSViewControllerFactory {
+        iOSViewControllerFactory(options: options, correctAnswers: correctAnswers)
+    }
+    
     func makeSUT(options: [Question<String>: [String]] = [:], correctAnswers: [Question<String>: [String]] = [:]) -> iOSViewControllerFactory {
         iOSViewControllerFactory(questions: [singleAnswerQuestion, multipleAnswerQuestion], options: options, correctAnswers: correctAnswers)
     }
