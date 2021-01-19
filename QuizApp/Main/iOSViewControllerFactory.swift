@@ -9,16 +9,28 @@ import UIKit
 import QuizEngine
 
 final class iOSViewControllerFactory: ViewControllerFactory {
+    typealias Answers = [(question: Question<String>, answers: [String])]
+    
     let questions: [Question<String>]
     let options: [Question<String>: [String]]
-    let correctAnswers: [Question<String>: [String]]
+    let correctAnswers: () -> Answers
+    
+    init(options: [Question<String>: [String]], correctAnswers: Answers) {
+        self.questions = correctAnswers.map { $0.question }
+        self.options = options
+        self.correctAnswers = { correctAnswers }
+    }
 
     init(questions: [Question<String>],
          options: [Question<String>: [String]],
          correctAnswers: [Question<String>: [String]]) {
         self.questions = questions
         self.options = options
-        self.correctAnswers = correctAnswers
+        self.correctAnswers = {
+            questions.map({ (question) in
+                (question, correctAnswers[question]!)
+            })
+        }
     }
     
     func questionViewController(for question: Question<String>, answerCallback: @escaping ([String]) -> Void) -> UIViewController {
@@ -32,9 +44,7 @@ final class iOSViewControllerFactory: ViewControllerFactory {
         let presenter = ResultsPresenter(userAnswers: questions.map({ (question) in
             (question, result.answers[question]!)
         }),
-        correctAnswers: questions.map({ (question) in
-            (question, correctAnswers[question]!)
-        }),
+        correctAnswers: correctAnswers(),
         scorer: {_, _ in result.score })
         let controller = ResultVC(summary: presenter.summary, answers: presenter.presentableAnswers)
         controller.title = presenter.title
