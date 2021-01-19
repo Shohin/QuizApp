@@ -76,7 +76,7 @@ final class iOSViewControllerFactoryTests: XCTestCase {
     }
     
     func makeQuestionController(question: Question<String> = .singleAnswer("")) -> QuestionVC {
-        makeSUT(options: [question: options]).questionViewController(for: question, answerCallback: {_ in}) as! QuestionVC
+        makeSUT(options: [question: options], correctAnswers: [:]).questionViewController(for: question, answerCallback: {_ in}) as! QuestionVC
     }
     
     func makeResults() -> (controller: ResultVC, presenter: ResultsPresenter) {
