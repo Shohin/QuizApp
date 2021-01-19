@@ -83,26 +83,10 @@ final class iOSViewControllerFactoryTests: XCTestCase {
         let userAnswers = [(singleAnswerQuestion, ["A1"]), (multipleAnswerQuestion, ["A1", "A2"])]
         let correctAnswers = [(singleAnswerQuestion, ["A1"]), (multipleAnswerQuestion, ["A1", "A2"])]
         
-        let result = Result.make(answers: [singleAnswerQuestion: ["A1"], multipleAnswerQuestion: ["A1", "A2"]])
-
-        let presenter = ResultsPresenter(userAnswers: userAnswers, correctAnswers: correctAnswers, scorer: {_, _ in result.score })
+        let presenter = ResultsPresenter(userAnswers: userAnswers, correctAnswers: correctAnswers, scorer: BasicScore.score)
         
-        let controller = makeSUT(correctAnswers: correctAnswers).resultsViewController(for: result) as! ResultVC
+        let controller = makeSUT(correctAnswers: correctAnswers).resultsViewController(for: userAnswers) as! ResultVC
         
         return (controller, presenter)
-    }
-}
-
-private extension ResultsPresenter {
-    convenience init(result: Result<Question<String>, [String]>,
-         questions: [Question<String>],
-         correctAnswers: [Question<String>: [String]]) {
-        self.init(userAnswers: questions.map({ (question) in
-            (question, result.answers[question]!)
-        }),
-        correctAnswers: questions.map({ (question) in
-            (question, correctAnswers[question]!)
-        }),
-        scorer: {_, _ in result.score })
     }
 }
