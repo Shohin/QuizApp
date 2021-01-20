@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = UINavigationController()
         
-        let factory = iOSViewControllerFactory(questions: questions, options: options, correctAnswers: correctAnswers)
+        let factory = iOSViewControllerFactory(options: options, correctAnswers: [(question1, [option3]), (question2, [option4, option7, option8])])
         
         let router = NavigationControllerRouter(navigationController, factory: factory)
         
