@@ -20,18 +20,6 @@ final class iOSViewControllerFactory: ViewControllerFactory {
         self.options = options
         self.correctAnswers = { correctAnswers }
     }
-
-    init(questions: [Question<String>],
-         options: [Question<String>: [String]],
-         correctAnswers: [Question<String>: [String]]) {
-        self.questions = questions
-        self.options = options
-        self.correctAnswers = {
-            questions.map({ (question) in
-                (question, correctAnswers[question]!)
-            })
-        }
-    }
     
     func questionViewController(for question: Question<String>, answerCallback: @escaping ([String]) -> Void) -> UIViewController {
         guard let options = options[question] else {
