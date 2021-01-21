@@ -146,6 +146,10 @@ final class ViewControllerFactoryStub: ViewControllerFactory {
         return stubbedQuestions[question] ?? UIViewController()
     }
     
+    func resultsViewController(for userAnswers: Answers) -> UIViewController {
+        UIViewController()
+    }
+    
     func resultsViewController(for result: Result<Question<String>, [String]>) -> UIViewController {
         stubbedResults[result] ?? UIViewController()
     }
