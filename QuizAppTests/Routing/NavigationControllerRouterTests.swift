@@ -17,7 +17,7 @@ final class NavigationControllerRouterTests: XCTestCase {
     let factory = ViewControllerFactoryStub()
     lazy var sut = NavigationControllerRouter(navigationController, factory: factory)
 
-    func testRouteToQuestionShowsQuestionController() {
+    func test_AnswerForQuestion_showsQuestionController() {
         let vc = UIViewController()
         let secondVC = UIViewController()
         factory.stub(qeustion: singleAnswerQuestion, with: vc)
