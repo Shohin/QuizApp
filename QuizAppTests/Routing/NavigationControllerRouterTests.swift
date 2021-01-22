@@ -20,8 +20,8 @@ final class NavigationControllerRouterTests: XCTestCase {
     func test_answerForQuestion_showsQuestionController() {
         let vc = UIViewController()
         let secondVC = UIViewController()
-        factory.stub(qeustion: singleAnswerQuestion, with: vc)
-        factory.stub(qeustion: Question.singleAnswer("Q2"), with: secondVC)
+        factory.stub(question: singleAnswerQuestion, with: vc)
+        factory.stub(question: Question.singleAnswer("Q2"), with: secondVC)
         
         sut.answer(for: singleAnswerQuestion, completion: {_ in})
         sut.answer(for: Question.singleAnswer("Q2"), completion: {_ in})
@@ -44,7 +44,7 @@ final class NavigationControllerRouterTests: XCTestCase {
     
     func test_answerForQuestion_singleAnswer_doesNotConfigureViewControllerWithSubmitButton() {
         let vc = UIViewController()
-        factory.stub(qeustion: singleAnswerQuestion, with: vc)
+        factory.stub(question: singleAnswerQuestion, with: vc)
 
         sut.answer(for: singleAnswerQuestion, completion: {_ in })
                 
@@ -63,7 +63,7 @@ final class NavigationControllerRouterTests: XCTestCase {
     
     func test_answerForQuestion_multipleAnswer_configuresViewControllerWithSubmitButton() {
         let vc = UIViewController()
-        factory.stub(qeustion: multipleAnswerQuestion, with: vc)
+        factory.stub(question: multipleAnswerQuestion, with: vc)
 
         sut.answer(for: multipleAnswerQuestion, completion: {_ in })
                 
@@ -72,7 +72,7 @@ final class NavigationControllerRouterTests: XCTestCase {
     
     func test_answerForQuestion_multipleAnswerSubmitButton_isDisabledWhenZeroAnswersSelected() {
         let vc = UIViewController()
-        factory.stub(qeustion: multipleAnswerQuestion, with: vc)
+        factory.stub(question: multipleAnswerQuestion, with: vc)
 
         sut.answer(for: multipleAnswerQuestion, completion: {_ in })
         XCTAssertFalse(vc.navigationItem.rightBarButtonItem!.isEnabled)
@@ -86,7 +86,7 @@ final class NavigationControllerRouterTests: XCTestCase {
     
     func test_answerForQuestion_multipleAnswerSubmitButton_progressToNextQuestion() {
         let vc = UIViewController()
-        factory.stub(qeustion: multipleAnswerQuestion, with: vc)
+        factory.stub(question: multipleAnswerQuestion, with: vc)
 
         var callbackWasFired = false
 
@@ -105,15 +105,14 @@ final class NavigationControllerRouterTests: XCTestCase {
         let vc = UIViewController()
         let secondVC = UIViewController()
         
-        let result = Result.make(answers: [singleAnswerQuestion: ["A1"]], score: 10)
-        let secondResult = Result.make(answers: [Question.singleAnswer("Q2"): ["A2"]], score: 20)
+        let userAnswers = [(singleAnswerQuestion, ["A1"])]
+        let secondUserAnswers = [(multipleAnswerQuestion, ["A2"])]
         
-        factory.stub(result: result, with: vc)
-        factory.stub(result: secondResult, with: secondVC)
-
+        factory.stub(resultToQuestions: [singleAnswerQuestion], with: vc)
+        factory.stub(resultToQuestions: [multipleAnswerQuestion], with: secondVC)
         
-        sut.routeTo(result: result)
-        sut.routeTo(result: secondResult)
+        sut.didCompleteQuiz(withAnswers: userAnswers)
+        sut.didCompleteQuiz(withAnswers: secondUserAnswers)
         
         XCTAssertEqual(navigationController.viewControllers.count, 2)
         XCTAssertEqual(navigationController.viewControllers.first, vc)
@@ -129,16 +128,16 @@ final class NotAnimatedNavigationController: UINavigationController {
 
 final class ViewControllerFactoryStub: ViewControllerFactory {
     private var stubbedQuestions = [Question<String>: UIViewController]()
-    private var stubbedResults = Dictionary<Result<Question<String>, [String]>, UIViewController>()
+    private var stubbedResults = Dictionary<[Question<String>], UIViewController>()
 
     var answerCallBacks = [Question<String>: ([String]) -> Void]()
     
-    func stub(qeustion: Question<String>, with vc: UIViewController) {
-        stubbedQuestions[qeustion] = vc
+    func stub(question: Question<String>, with vc: UIViewController) {
+        stubbedQuestions[question] = vc
     }
     
-    func stub(result: Result<Question<String>, [String]>, with vc: UIViewController) {
-        stubbedResults[result] = vc
+    func stub(resultToQuestions questions: [Question<String>], with vc: UIViewController) {
+        stubbedResults[questions] = vc
     }
     
     func questionViewController(for question: Question<String>, answerCallback: @escaping ([String]) -> Void) -> UIViewController {
@@ -147,11 +146,11 @@ final class ViewControllerFactoryStub: ViewControllerFactory {
     }
     
     func resultsViewController(for userAnswers: Answers) -> UIViewController {
-        UIViewController()
+        stubbedResults[userAnswers.map { $0.question }] ?? UIViewController()
     }
     
     func resultsViewController(for result: Result<Question<String>, [String]>) -> UIViewController {
-        stubbedResults[result] ?? UIViewController()
+        UIViewController()
     }
 }
 
