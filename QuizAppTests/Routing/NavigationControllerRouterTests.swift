@@ -17,14 +17,14 @@ final class NavigationControllerRouterTests: XCTestCase {
     let factory = ViewControllerFactoryStub()
     lazy var sut = NavigationControllerRouter(navigationController, factory: factory)
 
-    func test_AnswerForQuestion_showsQuestionController() {
+    func test_answerForQuestion_showsQuestionController() {
         let vc = UIViewController()
         let secondVC = UIViewController()
         factory.stub(qeustion: singleAnswerQuestion, with: vc)
         factory.stub(qeustion: Question.singleAnswer("Q2"), with: secondVC)
         
-        sut.routeTo(question: singleAnswerQuestion, answerCallback: {_ in})
-        sut.routeTo(question: Question.singleAnswer("Q2"), answerCallback: {_ in})
+        sut.answer(for: singleAnswerQuestion, completion: {_ in})
+        sut.answer(for: Question.singleAnswer("Q2"), completion: {_ in})
 
         
         XCTAssertEqual(navigationController.viewControllers.count, 2)
@@ -32,49 +32,49 @@ final class NavigationControllerRouterTests: XCTestCase {
         XCTAssertEqual(navigationController.viewControllers.last, secondVC)
     }
     
-    func testRouteToQuestionSingleAnswer_answerCallbackProgressToNextQuestion() {
+    func test_answerForQuestion_singleAnswer_answerCallbackProgressToNextQuestion() {
         var callbackWasFired = false
         
-        sut.routeTo(question: singleAnswerQuestion, answerCallback: {_ in callbackWasFired = true})
+        sut.answer(for: singleAnswerQuestion, completion: {_ in callbackWasFired = true})
         
         factory.answerCallBacks[singleAnswerQuestion]!(["anything"])
         
         XCTAssertTrue(callbackWasFired)
     }
     
-    func testRouteToQuestionSingleAnswer_doesNotConfigureViewControllerWithSubmitButton() {
+    func test_answerForQuestion_singleAnswer_doesNotConfigureViewControllerWithSubmitButton() {
         let vc = UIViewController()
         factory.stub(qeustion: singleAnswerQuestion, with: vc)
 
-        sut.routeTo(question: singleAnswerQuestion, answerCallback: {_ in })
+        sut.answer(for: singleAnswerQuestion, completion: {_ in })
                 
         XCTAssertNil(vc.navigationItem.rightBarButtonItem)
     }
     
-    func testRouteToQuestionMultipleAnswer_answerCallbackDoesNotProgressToNextQuestion() {
+    func test_answerForQuestion_multipleAnswer_answerCallbackDoesNotProgressToNextQuestion() {
         var callbackWasFired = false
         
-        sut.routeTo(question: multipleAnswerQuestion, answerCallback: {_ in callbackWasFired = true})
+        sut.answer(for: multipleAnswerQuestion, completion: {_ in callbackWasFired = true})
         
         factory.answerCallBacks[multipleAnswerQuestion]!(["anything"])
         
         XCTAssertFalse(callbackWasFired)
     }
     
-    func testRouteToQuestionMultipleAnswer_configuresViewControllerWithSubmitButton() {
+    func test_answerForQuestion_multipleAnswer_configuresViewControllerWithSubmitButton() {
         let vc = UIViewController()
         factory.stub(qeustion: multipleAnswerQuestion, with: vc)
 
-        sut.routeTo(question: multipleAnswerQuestion, answerCallback: {_ in })
+        sut.answer(for: multipleAnswerQuestion, completion: {_ in })
                 
         XCTAssertNotNil(vc.navigationItem.rightBarButtonItem)
     }
     
-    func testRouteToQuestionMultipleAnswerSubmitButton_isDisabledWhenZeroAnswersSelected() {
+    func test_answerForQuestion_multipleAnswerSubmitButton_isDisabledWhenZeroAnswersSelected() {
         let vc = UIViewController()
         factory.stub(qeustion: multipleAnswerQuestion, with: vc)
 
-        sut.routeTo(question: multipleAnswerQuestion, answerCallback: {_ in })
+        sut.answer(for: multipleAnswerQuestion, completion: {_ in })
         XCTAssertFalse(vc.navigationItem.rightBarButtonItem!.isEnabled)
 
         factory.answerCallBacks[multipleAnswerQuestion]!(["A1"])
@@ -84,13 +84,13 @@ final class NavigationControllerRouterTests: XCTestCase {
         XCTAssertFalse(vc.navigationItem.rightBarButtonItem!.isEnabled)
     }
     
-    func testRouteToQuestionMultipleAnswerSubmitButton_progressToNextQuestion() {
+    func test_answerForQuestion_multipleAnswerSubmitButton_progressToNextQuestion() {
         let vc = UIViewController()
         factory.stub(qeustion: multipleAnswerQuestion, with: vc)
 
         var callbackWasFired = false
 
-        sut.routeTo(question: multipleAnswerQuestion, answerCallback: {_ in
+        sut.answer(for: multipleAnswerQuestion, completion: {_ in
             callbackWasFired = true
         })
 
@@ -101,7 +101,7 @@ final class NavigationControllerRouterTests: XCTestCase {
         XCTAssertTrue(callbackWasFired)
     }
     
-    func testRouteToResultShowsResultController() {
+    func test_routeToResult_showsResultController() {
         let vc = UIViewController()
         let secondVC = UIViewController()
         
