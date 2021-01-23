@@ -10,10 +10,6 @@ import XCTest
 @testable import QuizEngine
 
 final class iOSViewControllerFactoryTests: XCTestCase {
-    let options = ["A1", "A2"]
-    let singleAnswerQuestion = Question.singleAnswer("Q1")
-    let multipleAnswerQuestion = Question.multipleAnswer("Q2")
-    
     func testQuestionViewControllerSingleAnswerCreatesControllerWithTitle() {
         let presenter = QuestionPresenter(questions: [singleAnswerQuestion, multipleAnswerQuestion], question: singleAnswerQuestion)
         XCTAssertEqual(makeQuestionController(question: singleAnswerQuestion).title, presenter.title)
@@ -67,6 +63,10 @@ final class iOSViewControllerFactoryTests: XCTestCase {
     }
     
     //MARK: Helpers
+    private let options = ["A1", "A2"]
+    private let singleAnswerQuestion = Question.singleAnswer("Q1")
+    private let multipleAnswerQuestion = Question.multipleAnswer("Q2")
+    
     func makeSUT(options: [Question<String>: [String]] = [:], correctAnswers: iOSViewControllerFactory.Answers = []) -> iOSViewControllerFactory {
         iOSViewControllerFactory(options: options, correctAnswers: correctAnswers)
     }

@@ -10,13 +10,6 @@ import QuizEngine
 @testable import QuizApp
 
 final class NavigationControllerRouterTests: XCTestCase {
-    private let singleAnswerQuestion =  Question.singleAnswer("Q1")
-    private let multipleAnswerQuestion =  Question.multipleAnswer("Q2")
-    
-    let navigationController = NotAnimatedNavigationController()
-    let factory = ViewControllerFactoryStub()
-    lazy var sut = NavigationControllerRouter(navigationController, factory: factory)
-
     func test_answerForQuestion_showsQuestionController() {
         let vc = UIViewController()
         let secondVC = UIViewController()
@@ -118,15 +111,23 @@ final class NavigationControllerRouterTests: XCTestCase {
         XCTAssertEqual(navigationController.viewControllers.first, vc)
         XCTAssertEqual(navigationController.viewControllers.last, secondVC)
     }
+    
+    //MARK: Helpers
+    private let singleAnswerQuestion =  Question.singleAnswer("Q1")
+    private let multipleAnswerQuestion =  Question.multipleAnswer("Q2")
+    
+    private let navigationController = NotAnimatedNavigationController()
+    private let factory = ViewControllerFactoryStub()
+    private lazy var sut = NavigationControllerRouter(navigationController, factory: factory)
 }
 
-final class NotAnimatedNavigationController: UINavigationController {
+private final class NotAnimatedNavigationController: UINavigationController {
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         super.pushViewController(viewController, animated: false)
     }
 }
 
-final class ViewControllerFactoryStub: ViewControllerFactory {
+private final class ViewControllerFactoryStub: ViewControllerFactory {
     private var stubbedQuestions = [Question<String>: UIViewController]()
     private var stubbedResults = Dictionary<[Question<String>], UIViewController>()
 
