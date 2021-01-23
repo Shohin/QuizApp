@@ -8,7 +8,7 @@
 import UIKit
 import QuizEngine
 
-final class iOSViewControllerFactory: ViewControllerFactory {    
+final class iOSViewControllerFactory: ViewControllerFactory {
     private var questions: [Question<String>] {
         correctAnswers.map { $0.question }
     }
@@ -33,17 +33,6 @@ final class iOSViewControllerFactory: ViewControllerFactory {
                                          correctAnswers: correctAnswers,
                                          scorer: BasicScore.score)
         
-        let controller = ResultVC(summary: presenter.summary, answers: presenter.presentableAnswers)
-        controller.title = presenter.title
-        return controller
-    }
-    
-    func resultsViewController(for result: Result<Question<String>, [String]>) -> UIViewController {
-        let presenter = ResultsPresenter(userAnswers: questions.map({ (question) in
-            (question, result.answers[question]!)
-        }),
-        correctAnswers: correctAnswers,
-        scorer: {_, _ in result.score })
         let controller = ResultVC(summary: presenter.summary, answers: presenter.presentableAnswers)
         controller.title = presenter.title
         return controller
