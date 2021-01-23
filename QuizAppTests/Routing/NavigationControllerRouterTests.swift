@@ -148,10 +148,6 @@ final class ViewControllerFactoryStub: ViewControllerFactory {
     func resultsViewController(for userAnswers: Answers) -> UIViewController {
         stubbedResults[userAnswers.map { $0.question }] ?? UIViewController()
     }
-    
-    func resultsViewController(for result: Result<Question<String>, [String]>) -> UIViewController {
-        UIViewController()
-    }
 }
 
 private extension UIBarButtonItem {
