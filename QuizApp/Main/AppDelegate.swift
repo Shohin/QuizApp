@@ -11,7 +11,7 @@ import QuizEngine
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
-    var game: Game<Question<String>, [String], NavigationControllerRouter>?
+    var quiz: Quiz?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -31,16 +31,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let options = [question1: [option1, option2, option3], question2: [option4, option5, option6, option7, option8]]
         
-        let correctAnswers = [question1: [option3], question2: [option4, option7, option8]]
+        let correctAnswers = [(question1, [option3]), (question2, [option4, option7, option8])]
         
         let navigationController = UINavigationController()
         
-        let factory = iOSViewControllerFactory(options: options, correctAnswers: [(question1, [option3]), (question2, [option4, option7, option8])])
+        let factory = iOSViewControllerFactory(options: options, correctAnswers: correctAnswers)
         
         let router = NavigationControllerRouter(navigationController, factory: factory)
         
-        
-        game = startGame(questions: questions, router: router, correctAnswers: correctAnswers)
+        quiz = Quiz.start(questions: questions, delegate: router)
         
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.rootViewController = navigationController
