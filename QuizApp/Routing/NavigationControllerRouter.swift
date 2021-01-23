@@ -8,7 +8,7 @@
 import UIKit
 import QuizEngine
 
-final class NavigationControllerRouter: Router {
+final class NavigationControllerRouter: Router, QuizDelegate {
     let navigationController: UINavigationController
     let factory: ViewControllerFactory
     init(_ navigationController: UINavigationController, factory: ViewControllerFactory) {
