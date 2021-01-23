@@ -94,7 +94,7 @@ final class NavigationControllerRouterTests: XCTestCase {
         XCTAssertTrue(callbackWasFired)
     }
     
-    func test_routeToResult_showsResultController() {
+    func test_didCompleteQuiz_showsResultController() {
         let vc = UIViewController()
         let secondVC = UIViewController()
         
